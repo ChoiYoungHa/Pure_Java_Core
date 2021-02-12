@@ -1,15 +1,19 @@
 package pure_Java_core.pure_core.member;
 
 public class MemberServiceImpl implements MemberService {
-    private final MemberRepository repository = new MemberMemoryRepository();
+    private final MemberRepository memberRepository; // DIP 준수
+
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository; // 생성자 주입
+    }
 
     @Override
     public void join(Member member) {
-        repository.save(member);
+        memberRepository.save(member);
     }
 
     @Override
     public Member findMember(Long memberId) {
-        return repository.findById(memberId);
+        return memberRepository.findById(memberId);
     }
 }
