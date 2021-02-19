@@ -10,12 +10,24 @@ import pure_Java_core.pure_core.member.MemberRepository;
 
 @Component
 public class OrderServiceImpl implements OrderService{
-    public final MemberRepository memberRepository;
-    public final DiscountPolicy discountPolicy; // DIP 지킨거 추상화에만 의존
+    public MemberRepository memberRepository;
+    public DiscountPolicy discountPolicy; // DIP 지킨거 추상화에만 의존
+
+//    //수정자 주입
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        System.out.println("discountPolicy = " + discountPolicy);
+//        this.discountPolicy = discountPolicy;
+//    }
+//
+//    @Autowired
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        System.out.println("memberRepository = " + memberRepository);
+//        this.memberRepository = memberRepository;
+//    }
 
     //constructor injection (생성자 주입)
     //의존 관계 주입 Dependency Injection DI주입
-    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
