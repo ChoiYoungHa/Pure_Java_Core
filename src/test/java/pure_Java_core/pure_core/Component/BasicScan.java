@@ -20,6 +20,7 @@ public class BasicScan {
     @DisplayName("컴포넌트 스캔")
     void scantest() {
 
+        //orderService의 의존관계인 discountPolicy가 bean이 중복되어있어서 오류를 발생시킴
         MemberService memberService = ac.getBean(MemberService.class);
         OrderService bean = ac.getBean(OrderService.class);
         Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
